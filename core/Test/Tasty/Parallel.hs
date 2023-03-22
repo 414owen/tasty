@@ -53,6 +53,7 @@ runInParallel nthreads actions = do
 
   actionsVar <- atomically $ newTMVar actions
 
+  putStrLn $ "Tasty is using " <> show nthreads <> " threads"
   pids <- replicateM nthreads (async $ work actionsVar)
 
   return $ do
