@@ -53,8 +53,8 @@ runInParallel nthreads actions = do
 
   actionsVar <- atomically $ newTMVar actions
 
-  putStrLn $ "Tasty is using " <> show nthreads <> " threads"
-  pids <- replicateM nthreads (async $ work actionsVar)
+  putStrLn $ "Tasty is using 1 thread"
+  pids <- replicateM 1 (async $ work actionsVar)
 
   return $ do
     -- Tell worker threads there is no more work after their current task.
